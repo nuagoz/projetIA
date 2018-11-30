@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="stoquefiche">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/out/artifacts/chessengine_jar/stoquefiche.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
