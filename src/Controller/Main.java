@@ -1,13 +1,13 @@
 package Controller;
 
-import Model.Bitboard;
-import Model.BoardGeneration;
+import Model.Game;
+import Model.Player;
 import Model.UCI;
 
 public class Main {
     public static void main(String [] args)
     {
-        Bitboard bitboard = new Bitboard();
+        Game bitboard = new Game(Player.BLACK);
         UCI chessSoftware = new UCI(bitboard);
         chessSoftware.connect();
         //BoardGeneration.initiate();

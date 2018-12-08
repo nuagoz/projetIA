@@ -1,27 +1,20 @@
 package Model;
 
 public class Node {
-    private long WP = 0L, WN = 0L, WB = 0L, WR = 0L, WQ = 0, WK = 0, BP = 0, BN = 0, BB = 0L, BR = 0L, BQ = 0L, BK = 0L;
-    private String chessBoard[][] = {
-            { " ", " ", " ", " ", " ", " ", " ", " " },
-            { " ", " ", " ", " ", " ", " ", " ", " " },
-            { " ", " ", " ", " ", " ", " ", " ", " " },
-            { " ", " ", " ", " ", " ", " ", " ", " " },
-            { " ", " ", " ", " ", " ", " ", " ", " " },
-            { " ", " ", " ", " ", " ", " ", " ", " " },
-            { " ", " ", " ", " ", " ", " ", " ", " " },
-            { " ", " ", " ", " ", " ", " ", " ", " " }
-    };
+    public long WP = 0L, WN = 0L, WB = 0L,
+                 WR = 0L, WQ = 0L, WK = 0L,
+                 BP = 0L, BN = 0L, BB = 0L,
+                 BR = 0L, BQ = 0L, BK = 0L, enPassant = 0L;
+
     public Node(String chessBoard[][]) {
         generateBitboards(chessBoard);
-        System.out.println("bitboards ok");
-        System.out.println(WP);
+        System.out.println("bitboards generated");
     }
 
-    public String getPossiblesMoves() {
-        MoveGenerator moveGen = new MoveGenerator(Player.WHITE);
-        return moveGen.generatePossibleMoves(WK, WQ, WR, WB, WN, WP, BK, BQ, BR, BB, BN, BP);
-    }
+    /*public String getPossiblesMoves(Player player) {
+        MoveGenerator moveGen = new MoveGenerator(player);
+        //return moveGen.generatePossibleMoves(WK, WQ, WR, WB, WN, WP, BK, BQ, BR, BB, BN, BP, enPassant);
+    }*/
 
     private void generateBitboards(String[][] chessBoard) {
         String binary;

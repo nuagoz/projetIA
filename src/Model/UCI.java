@@ -4,11 +4,11 @@ import java.util.Scanner;
 
 public class UCI {
     private static final String ENGINE_NAME = "StoqueFiche";
-    private static final String AUTHORS = "Paul / Louison / Zoé / Etienne";
-    private Bitboard bitboard;
+    private static final String AUTHORS = "Louison / Zoé / Etienne";
+    private Game game;
 
-    public UCI (Bitboard bitboard) {
-        this.bitboard = bitboard;
+    public UCI (Game game) {
+        this.game = game;
     }
     /**
      * Méthode permettant de communiquer avec ChessArena via le
@@ -74,7 +74,6 @@ public class UCI {
      * @param inputString
      */
     private void newPosition(String inputString) {
-        System.out.println("New Position");
         String[] plateau = inputString.split(" ");
 
         // Dans le cas ou le plateau de depart est le plateau de base
@@ -86,14 +85,30 @@ public class UCI {
             fenToBoard(plateau[2]);
         }
 
+        if(plateau.length < 3)
+            return;
+
         // On applique ensuite la liste des mouvements qui ont ete realises a partir du plateau de depart
         if(plateau[2].equals("moves")) {
-            System.out.println("Moves : " + plateau);
             for(int i = 3; i < plateau.length; i++)
-                bitboard.makeMove(plateau[i]);
+                game.makeMove(plateau[i]);
         }
+        //game.displayChessBoard();
+        Node node = new Node(game.chessBoard);
+        game.displayChessBoard();
+        int depth = 6;
+        long startTime = System.currentTimeMillis();
+        Search search = new Search();
+        String bestMove = search.deepeningSearch(1000, depth, node.WP, node.WN, node.WB, node.WR, node.WQ, node.WK, node.BP, node.BN, node.BB, node.BR, node.BQ, node.BK, node.enPassant, game.castlingRights, game.enginePlayer);
+        //search.alphaBeta(Integer.MIN_VALUE, Integer.MAX_VALUE, node.WP, node.WN, node.WB, node.WR, node.WQ, node.WK, node.BP, node.BN, node.BB, node.BR, node.BQ, node.BK, node.enPassant, game.castlingRights, game.enginePlayer, depth);
 
-        bitboard.displayChessBoard();
+        //String bestMove = search.alphaBeta2(Integer.MIN_VALUE, Integer.MAX_VALUE, node.WP, node.WN, node.WB, node.WR, node.WQ, node.WK, node.BP, node.BN, node.BB, node.BR, node.BQ, node.BK, node.enPassant, game.castlingRights, game.enginePlayer, depth);
+        //int bestmoveIndex = search.alphaBeta(Integer.MIN_VALUE, Integer.MAX_VALUE, node.WP, node.WN, node.WB, node.WR, node.WQ, node.WK, node.BP, node.BN, node.BB, node.BR, node.BQ, node.BK, node.enPassant, game.castlingRights, game.enginePlayer, depth);
+        System.out.println("Depth " + (search.currentDepth - 1) + " time : " + (System.currentTimeMillis() - startTime));
+        //System.out.println("bestmove " + moveToAlgebra(bestMove));
+        System.out.println("info depth " + (search.currentDepth - 1));
+        System.out.println("bestmove " + moveToAlgebra(bestMove));
+        //Search
         //System.out.println("bestmove c7c5");
 
     }
@@ -108,12 +123,12 @@ public class UCI {
         for(int i = 0; i < parts[1].length(); i++) {
             currentPiece = parts[1].charAt(i);
             if(inArray(currentPiece, whitePieces) || inArray(currentPiece, blackPieces)){
-                bitboard.chessBoard[rank][file] = Character.toString(currentPiece);
+                game.chessBoard[rank][file] = Character.toString(currentPiece);
                 file++;
             }
             else if(inArray(currentPiece, numbers)) {
                 while(file < currentPiece - '0') {
-                    bitboard.chessBoard[rank][file] = " ";
+                    game.chessBoard[rank][file] = " ";
                     file++;
                 }
             }
@@ -156,9 +171,42 @@ public class UCI {
         System.out.println("Game over");
     }
 
+    private String moveToAlgebra(String move)
+    {
+        String moveString="";
+        moveString+=""+(char)(move.charAt(1)+49);
+        moveString+=""+('8'-move.charAt(0));
+        moveString+=""+(char)(move.charAt(3)+49);
+        moveString+=""+('8'-move.charAt(2));
+        return moveString;
+    }
+
     private void compute() {
-        Node node = new Node(bitboard.chessBoard);
-        System.out.println("Moves for white bishops :" + node.getPossiblesMoves());
+        Node node = new Node(game.chessBoard);
+        long startTime = System.currentTimeMillis();
+        //String moves = MoveGenerator.generatePossibleMoves(node.WK,node.BQ,node.WR,node.WB,node.WN,node.WP,node.BK,
+                //node.BQ,node.BR,node.BB,node.BN,node.BP,node.enPassant,Player.BLACK);
+        System.out.println("Evaluation = " + Evaluation.getValue(Player.WHITE, node.WP, node.WN, node.WB, node.WR, node.WQ,
+                node.WK, node.BP, node.BN, node.BB, node.BR, node.BQ, node.BK));
+        /*String moves = node.getPossiblesMoves(Player.WHITE);
+        System.out.println("GENERATE MOVES TIME :" + (System.currentTimeMillis() - startTime));
+        System.out.println("Moves : (" + (moves.length()/4) + ") " + moves);
+        Utils.drawBitboard(node.WK|node.BK);
+        System.out.println();
+        startTime = System.currentTimeMillis();
+        for (int i=0;i<moves.length();i+=4) {
+            String currentMove = moves.substring(i, i+4);
+            if(currentMove.equals("7476") || currentMove.equals("7472"))
+                System.out.println("CASTLE !!!");
+            System.out.println("Move : " + moves.substring(i, i+4));
+            long rook = node.makeMove(node.WR, currentMove, 'R');
+            long king = node.makeMove(node.WK, currentMove, 'K');
+            long rookAfterCastle = node.makeCastle(rook, node.WK|node.BK, currentMove);
+            Utils.drawBitboard(rookAfterCastle);
+            System.out.println();
+        }
+        System.out.println("MAKE MOVES TIME :" + (System.currentTimeMillis() - startTime));*/
+
     }
 
 }
