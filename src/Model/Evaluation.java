@@ -107,8 +107,8 @@ public class Evaluation {
         scoreBlack += Long.bitCount(BQ) * queenValue;
         scoreBlack += Long.bitCount(BK) * kingValue;
 
-        whiteKingUnsafe = WK & MoveGenerator.generateUnsafeSquares(currentPlayer, BP, BN, BB, BR, BQ, BK);
-        blackKingUnsafe = BK & MoveGenerator.generateUnsafeSquares(currentPlayer, WP, WN, WB, WR, WQ, WK);
+        whiteKingUnsafe = WK & MoveGenerator.generateUnsafeSquares(Player.WHITE, BP, BN, BB, BR, BQ, BK, WP, WN, WB, WR, WQ, WK);
+        blackKingUnsafe = BK & MoveGenerator.generateUnsafeSquares(Player.BLACK, WP, WN, WB, WR, WQ, WK, BP, BN, BB, BR, BQ, BK);
 
         if(currentPlayer == Player.WHITE) {
             if(whiteKingUnsafe != 0) // DANGER

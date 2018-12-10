@@ -187,8 +187,8 @@ public class Search {
                     currentCastlingRights.longBlackCastle = false;
 
             }
-            if(((newWK & MoveGenerator.generateUnsafeSquares(Player.WHITE, newBP, newBN, newBB, newBR, newBQ, newBK)) == 0 && currentPlayer == Player.WHITE)
-                    || ((newBK & MoveGenerator.generateUnsafeSquares(Player.BLACK, newWP, newWN, newWB, newWR, newWQ, newWK)) == 0 && currentPlayer == Player.BLACK)) {
+            if(((newWK & MoveGenerator.generateUnsafeSquares(Player.WHITE, newBP, newBN, newBB, newBR, newBQ, newBK, newWP, newWN, newWB, newWR, newWQ, newWK)) == 0 && currentPlayer == Player.WHITE)
+                    || ((newBK & MoveGenerator.generateUnsafeSquares(Player.BLACK, newWP, newWN, newWB, newWR, newWQ, newWK, newBP, newBN, newBB, newBR, newBQ, newBK)) == 0 && currentPlayer == Player.BLACK)) {
                 bestScore = Integer.min(bestScore, maxAB(alpha, beta, newWP, newWN, newWB, newWR, newWQ, newWK,
                         newBP, newBN, newBB, newBR, newBQ, newBK, enPassant,
                         currentCastlingRights, opponent, depth-1));
@@ -249,8 +249,8 @@ public class Search {
                     currentCastlingRights.longBlackCastle = false;
 
             }
-            if(((newWK & MoveGenerator.generateUnsafeSquares(Player.WHITE, newBP, newBN, newBB, newBR, newBQ, newBK)) == 0 && currentPlayer == Player.WHITE)
-                    || ((newBK & MoveGenerator.generateUnsafeSquares(Player.BLACK, newWP, newWN, newWB, newWR, newWQ, newWK)) == 0 && currentPlayer == Player.BLACK)) {
+            if(((newWK & MoveGenerator.generateUnsafeSquares(Player.WHITE, newBP, newBN, newBB, newBR, newBQ, newBK, newWP, newWN, newWB, newWR, newWQ, newWK)) == 0 && currentPlayer == Player.WHITE)
+                    || ((newBK & MoveGenerator.generateUnsafeSquares(Player.BLACK, newWP, newWN, newWB, newWR, newWQ, newWK, newBP, newBN, newBB, newBR, newBQ, newBK)) == 0 && currentPlayer == Player.BLACK)) {
                 bestScore = Integer.max(bestScore, minAB(alpha, beta, newWP, newWN, newWB, newWR, newWQ, newWK,
                         newBP, newBN, newBB, newBR, newBQ, newBK, enPassant,
                         currentCastlingRights, opponent, depth-1));
@@ -344,8 +344,8 @@ public class Search {
 
             }
             Player opponent = currentPlayer == Player.WHITE ? Player.BLACK : Player.WHITE;
-            if (((newWK & MoveGenerator.generateUnsafeSquares(Player.WHITE, newBP, newBN, newBB, newBR, newBQ, newBK)) == 0 && currentPlayer == Player.WHITE)
-                    || ((newBK & MoveGenerator.generateUnsafeSquares(Player.BLACK, newWP, newWN, newWB, newWR, newWQ, newWK)) == 0 && currentPlayer == Player.BLACK)) {
+            if(((newWK & MoveGenerator.generateUnsafeSquares(Player.WHITE, newBP, newBN, newBB, newBR, newBQ, newBK, newWP, newWN, newWB, newWR, newWQ, newWK)) == 0 && currentPlayer == Player.WHITE)
+                    || ((newBK & MoveGenerator.generateUnsafeSquares(Player.BLACK, newWP, newWN, newWB, newWR, newWQ, newWK, newBP, newBN, newBB, newBR, newBQ, newBK)) == 0 && currentPlayer == Player.BLACK)) {
                 int rating = alphaBetaMIN(depth - 1, alpha, beta, newWP, newWN, newWB, newWR, newWQ, newWK,
                         newBP, newBN, newBB, newBR, newBQ, newBK, enPassant,
                         currentCastlingRights, opponent);
@@ -409,8 +409,8 @@ public class Search {
 
             }
 
-            if (((newWK & MoveGenerator.generateUnsafeSquares(Player.WHITE, newBP, newBN, newBB, newBR, newBQ, newBK)) == 0 && currentPlayer == Player.WHITE)
-                    || ((newBK & MoveGenerator.generateUnsafeSquares(Player.BLACK, newWP, newWN, newWB, newWR, newWQ, newWK)) == 0 && currentPlayer == Player.BLACK)) {
+            if(((newWK & MoveGenerator.generateUnsafeSquares(Player.WHITE, newBP, newBN, newBB, newBR, newBQ, newBK, newWP, newWN, newWB, newWR, newWQ, newWK)) == 0 && currentPlayer == Player.WHITE)
+                    || ((newBK & MoveGenerator.generateUnsafeSquares(Player.BLACK, newWP, newWN, newWB, newWR, newWQ, newWK, newBP, newBN, newBB, newBR, newBQ, newBK)) == 0 && currentPlayer == Player.BLACK)) {
                 int rating = alphaBetaMAX(depth - 1, alpha, beta, newWP, newWN, newWB, newWR, newWQ, newWK,
                         newBP, newBN, newBB, newBR, newBQ, newBK, enPassant,
                         currentCastlingRights, opponent);

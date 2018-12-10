@@ -47,7 +47,7 @@ public class MoveGenerator {
 
     private static String generateWhitePossibleMoves(long WK, long WQ, long WR, long WB, long WN, long WP, long BK, long BQ, long BR, long BB, long BN, long BP, long enPassant) {
         NOT_MY_PIECES = ~(WP|WN|WB|WR|WQ|WK|BK);
-        unsafeSquares = generateUnsafeSquares(player, BP, BN, BB, BR, BQ, BK);
+        unsafeSquares = generateUnsafeSquares(player, BP, BN, BB, BR, BQ, BK, WP, WN, WB, WR, WQ, WK);
         String allMoves = "";
         allMoves += generateBishopMoves(WB);
         allMoves += generateRookMoves(WR);
@@ -62,7 +62,7 @@ public class MoveGenerator {
 
     private static String generateBlackPossibleMoves(long WK, long WQ, long WR, long WB, long WN, long WP, long BK, long BQ, long BR, long BB, long BN, long BP, long enPassant) {
         NOT_MY_PIECES = ~(BP|BN|BB|BR|BQ|BK|WK);
-        unsafeSquares = generateUnsafeSquares(player, WP, WN, WB, WR, WQ, WK);
+        unsafeSquares = generateUnsafeSquares(player, WP, WN, WB, WR, WQ, WK, BP, BN, BB, BR, BQ, BK);
         String allMoves = "";
         allMoves += generateBishopMoves(BB);
         allMoves += generateRookMoves(BR);
@@ -266,9 +266,9 @@ public class MoveGenerator {
         while (currentMove != 0) {
             index = Long.numberOfTrailingZeros(currentMove);
             moveCoords = "" + (index % 8) + (index % 8) + "QP"
-                        + (index % 8) + (index % 8) + "RP"
-                        + (index % 8) + (index % 8) + "BP"
-                        + (index % 8) + (index % 8) + "NP";
+                    + (index % 8) + (index % 8) + "RP"
+                    + (index % 8) + (index % 8) + "BP"
+                    + (index % 8) + (index % 8) + "NP";
             //whitePawnMoveList.append(moveCoords);
             pawnMoves &= ~currentMove;
             currentMove = pawnMoves & -pawnMoves;
@@ -282,7 +282,7 @@ public class MoveGenerator {
                     + (index % 8+1) + (index % 8) + "RP"
                     + (index % 8+1) + (index % 8) + "BP"
                     + (index % 8+1) + (index % 8) + "NP";
-           // whitePawnMoveList.append(moveCoords);
+            // whitePawnMoveList.append(moveCoords);
             pawnMoves &= ~currentMove;
             currentMove = pawnMoves & -pawnMoves;
         }
@@ -476,11 +476,13 @@ public class MoveGenerator {
         return castleMoveList.toString();
     }
 
-    public static long generateUnsafeSquares(Player player, long oppP, long oppN, long oppB, long oppR, long oppQ, long oppK) {
+    public static long generateUnsafeSquares(Player player, long oppP, long oppN, long oppB, long oppR, long oppQ, long oppK, long myP, long myN, long myB, long myR, long myQ, long myK) {
         long unsafeSquares; // bitboard pour stocker les positions controlees par l'adversaire
         long opponentPossibleMoves;
         long currentPiece;
         int piecePosition;
+        occupied = oppP|oppN|oppB|oppR|oppQ|oppK|myP|myN|myB|myR|myQ|myK;
+               // WP|WN|WB|WR|WQ|WK|BP|BN|BB|BR|BQ|BK
 
         if(player == Player.WHITE) {
             unsafeSquares = ((oppP << 7) & ~Utils.fileH); // capture pion a droite
@@ -539,7 +541,7 @@ public class MoveGenerator {
         return unsafeSquares;
     }
 
-     private static long verticalMoves(int s) {
+    private static long verticalMoves(int s) {
         long binaryS = 1L << s;
         long possibilitiesHorizontal = (occupied - 2 * binaryS) ^ Long.reverse(Long.reverse(occupied) - 2 * Long.reverse(binaryS));
         long possibilitiesVertical = ((occupied&Utils.FILES[s % 8]) - (2 * binaryS)) ^ Long.reverse(Long.reverse(occupied&Utils.FILES[s % 8]) - (2 * Long.reverse(binaryS)));
@@ -551,6 +553,78 @@ public class MoveGenerator {
         long possibilitiesDiagonal = ((occupied&Utils.diagonalMasks[(s / 8) + (s % 8)]) - (2 * binaryS)) ^ Long.reverse(Long.reverse(occupied&Utils.diagonalMasks[(s / 8) + (s % 8)]) - (2 * Long.reverse(binaryS)));
         long possibilitiesAntiDiagonal = ((occupied&Utils.antiDiagonalMasks[(s / 8) + 7 - (s % 8)]) - (2 * binaryS)) ^ Long.reverse(Long.reverse(occupied&Utils.antiDiagonalMasks[(s / 8) + 7 - (s % 8)]) - (2 * Long.reverse(binaryS)));
         return (possibilitiesDiagonal&Utils.diagonalMasks[(s / 8) + (s % 8)]) | (possibilitiesAntiDiagonal&Utils.antiDiagonalMasks[(s / 8) + 7 - (s % 8)]);
+    }
+
+    public static long unsafeForBlack(long WP,long WN,long WB,long WR,long WQ,long WK,long BP,long BN,long BB,long BR,long BQ,long BK) {
+        long unsafe;
+        occupied=WP|WN|WB|WR|WQ|WK|BP|BN|BB|BR|BQ|BK;
+        //pawn
+        unsafe=((WP>>>7)&~Utils.fileA);//pawn capture right
+        unsafe|=((WP>>>9)&~Utils.fileH);//pawn capture left
+        long possibility;
+        //knight
+        long i=WN&~(WN-1);
+        while(i != 0)
+        {
+            int iLocation=Long.numberOfTrailingZeros(i);
+            if (iLocation>18)
+            {
+                possibility=Utils.knightSpan<<(iLocation-18);
+            }
+            else {
+                possibility=Utils.knightSpan>>(18-iLocation);
+            }
+            if (iLocation%8<4)
+            {
+                possibility &=~Utils.filesGH;
+            }
+            else {
+                possibility &=~Utils.filesAB;
+            }
+            unsafe |= possibility;
+            WN&=~i;
+            i=WN&~(WN-1);
+        }
+        //bishop/queen
+        long QB=WQ|WB;
+        i=QB&~(QB-1);
+        while(i != 0)
+        {
+            int iLocation=Long.numberOfTrailingZeros(i);
+            possibility=diagonalMoves(iLocation);
+            unsafe |= possibility;
+            QB&=~i;
+            i=QB&~(QB-1);
+        }
+        //rook/queen
+        long QR=WQ|WR;
+        i=QR&~(QR-1);
+        while(i != 0)
+        {
+            int iLocation=Long.numberOfTrailingZeros(i);
+            possibility=verticalMoves(iLocation);
+            unsafe |= possibility;
+            QR&=~i;
+            i=QR&~(QR-1);
+        }
+        //king
+        int iLocation=Long.numberOfTrailingZeros(WK);
+        if (iLocation>9)
+        {
+            possibility=Utils.kingSpan<<(iLocation-9);
+        }
+        else {
+            possibility=Utils.kingSpan>>(9-iLocation);
+        }
+        if (iLocation%8<4)
+        {
+            possibility &=~Utils.filesGH;
+        }
+        else {
+            possibility &=~Utils.filesAB;
+        }
+        unsafe |= possibility;
+        return unsafe;
     }
 
 }
