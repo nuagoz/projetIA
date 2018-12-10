@@ -186,7 +186,7 @@ public class UCI {
         long startTime = System.currentTimeMillis();
         //String moves = MoveGenerator.generatePossibleMoves(node.WK,node.BQ,node.WR,node.WB,node.WN,node.WP,node.BK,
                 //node.BQ,node.BR,node.BB,node.BN,node.BP,node.enPassant,Player.BLACK);
-        System.out.println("Evaluation = " + Evaluation.getValue(Player.WHITE, node.WP, node.WN, node.WB, node.WR, node.WQ,
+        System.out.println("Evaluation = " + Evaluation.getValue(Player.BLACK, node.WP, node.WN, node.WB, node.WR, node.WQ,
                 node.WK, node.BP, node.BN, node.BB, node.BR, node.BQ, node.BK));
         /*String moves = node.getPossiblesMoves(Player.WHITE);
         System.out.println("GENERATE MOVES TIME :" + (System.currentTimeMillis() - startTime));

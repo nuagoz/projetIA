@@ -9,81 +9,81 @@ public class Evaluation {
     private static final int queenValue = 900;
     private static final int kingValue = 10000000;
 
-    int pawnScores[] = {
-            0,  0,  0,  0,  0,  0,  0,  0,
-            50, 50, 50, 50, 50, 50, 50, 50,
-            10, 10, 20, 30, 30, 20, 10, 10,
-            5,  5, 10, 25, 25, 10,  5,  5,
-            0,  0,  0, 20, 20,  0,  0,  0,
-            5, -5,-10,  0,  0,-10, -5,  5,
-            5, 10, 10,-20,-20, 10, 10,  5,
-            0,  0,  0,  0,  0,  0,  0,  0
+    private static final int pawnScores[][] = {
+            {0,  0,  0,  0,  0,  0,  0,  0},
+            {50, 50, 50, 50, 50, 50, 50, 50},
+            {10, 10, 20, 30, 30, 20, 10, 10},
+            {5,  5, 10, 25, 25, 10,  5,  5},
+            {0,  0,  0, 20, 20,  0,  0,  0},
+            {5, -5,-10,  0,  0,-10, -5,  5},
+            {5, 10, 10,-20,-20, 10, 10,  5},
+            {0,  0,  0,  0,  0,  0,  0,  0}
     };
 
-    int rookScores[] = {
-            0,  0,  0,  0,  0,  0,  0,  0,
-            5, 10, 10, 10, 10, 10, 10,  5,
-            -5,  0,  0,  0,  0,  0,  0, -5,
-            -5,  0,  0,  0,  0,  0,  0, -5,
-            -5,  0,  0,  0,  0,  0,  0, -5,
-            -5,  0,  0,  0,  0,  0,  0, -5,
-            -5,  0,  0,  0,  0,  0,  0, -5,
-            0,  0,  0,  5,  5,  0,  0,  0
+    private static final int rookScores[][] = {
+            {0,  0,  0,  0,  0,  0,  0,  0},
+            {5, 10, 10, 10, 10, 10, 10,  5},
+            {-5,  0,  0,  0,  0,  0,  0, -5},
+            {-5,  0,  0,  0,  0,  0,  0, -5},
+            {-5,  0,  0,  0,  0,  0,  0, -5},
+            {-5,  0,  0,  0,  0,  0,  0, -5},
+            {-5,  0,  0,  0,  0,  0,  0, -5},
+            {0,  0,  0,  5,  5,  0,  0,  0}
     };
 
-    int knightScores[] = {
-            -50,-40,-30,-30,-30,-30,-40,-50,
-            -40,-20,  0,  0,  0,  0,-20,-40,
-            -30,  0, 10, 15, 15, 10,  0,-30,
-            -30,  5, 15, 20, 20, 15,  5,-30,
-            -30,  0, 15, 20, 20, 15,  0,-30,
-            -30,  5, 10, 15, 15, 10,  5,-30,
-            -40,-20,  0,  5,  5,  0,-20,-40,
-            -50,-40,-30,-30,-30,-30,-40,-50
+    private static final int knightScores[][] = {
+            {-50,-40,-30,-30,-30,-30,-40,-50},
+            {-40,-20,  0,  0,  0,  0,-20,-40},
+            {-30,  0, 10, 15, 15, 10,  0,-30},
+            {-30,  5, 15, 20, 20, 15,  5,-30},
+            {-30,  0, 15, 20, 20, 15,  0,-30},
+            {-30,  5, 10, 15, 15, 10,  5,-30},
+            {-40,-20,  0,  5,  5,  0,-20,-40},
+            {-50,-40,-30,-30,-30,-30,-40,-50}
     };
 
-    int bishopScores[] = {
-            -20,-10,-10,-10,-10,-10,-10,-20,
-            -10,  0,  0,  0,  0,  0,  0,-10,
-            -10,  0,  5, 10, 10,  5,  0,-10,
-            -10,  5,  5, 10, 10,  5,  5,-10,
-            -10,  0, 10, 10, 10, 10,  0,-10,
-            -10, 10, 10, 10, 10, 10, 10,-10,
-            -10,  5,  0,  0,  0,  0,  5,-10,
-            -20,-10,-10,-10,-10,-10,-10,-20
+    private static final int bishopScores[][] = {
+            {-20,-10,-10,-10,-10,-10,-10,-20},
+            {-10,  0,  0,  0,  0,  0,  0,-10},
+            {-10,  0,  5, 10, 10,  5,  0,-10},
+            {-10,  5,  5, 10, 10,  5,  5,-10},
+            {-10,  0, 10, 10, 10, 10,  0,-10},
+            {-10, 10, 10, 10, 10, 10, 10,-10},
+            {-10,  5,  0,  0,  0,  0,  5,-10},
+            {-20,-10,-10,-10,-10,-10,-10,-20}
     };
 
-    int queenScores [] = {
-            -20,-10,-10, -5, -5,-10,-10,-20,
-            -10,  0,  0,  0,  0,  0,  0,-10,
-            -10,  0,  5,  5,  5,  5,  0,-10,
-            -5,  0,  5,  5,  5,  5,  0, -5,
-            0,  0,  5,  5,  5,  5,  0, -5,
-            -10,  5,  5,  5,  5,  5,  0,-10,
-            -10,  0,  5,  0,  0,  0,  0,-10,
-            -20,-10,-10, -5, -5,-10,-10,-20
+    private static final int queenScores [][] = {
+            {-20,-10,-10, -5, -5,-10,-10,-20},
+            {-10,  0,  0,  0,  0,  0,  0,-10},
+            {-10,  0,  5,  5,  5,  5,  0,-10},
+            {-5,  0,  5,  5,  5,  5,  0, -5},
+            {0,  0,  5,  5,  5,  5,  0, -5},
+            {-10,  5,  5,  5,  5,  5,  0,-10},
+            {-10,  0,  5,  0,  0,  0,  0,-10},
+            {-20,-10,-10, -5, -5,-10,-10,-20}
     };
 
-    int kingMidGame[] = {
-            -30,-40,-40,-50,-50,-40,-40,-30,
-            -30,-40,-40,-50,-50,-40,-40,-30,
-            -30,-40,-40,-50,-50,-40,-40,-30,
-            -30,-40,-40,-50,-50,-40,-40,-30,
-            -20,-30,-30,-40,-40,-30,-30,-20,
-            -10,-20,-20,-20,-20,-20,-20,-10,
-            20, 20,  0,  0,  0,  0, 20, 20,
-            20, 30, 10,  0,  0, 10, 30, 20
+    private static final int kingMidGame[][] = {
+            {-30,-40,-40,-50,-50,-40,-40,-30},
+            {-30,-40,-40,-50,-50,-40,-40,-30},
+            {-30,-40,-40,-50,-50,-40,-40,-30},
+            {-30,-40,-40,-50,-50,-40,-40,-30},
+            {-20,-30,-30,-40,-40,-30,-30,-20},
+            {-10,-20,-20,-20,-20,-20,-20,-10},
+            {20, 20,  0,  0,  0,  0, 20, 20},
+            {20, 30, 10,  0,  0, 10, 30, 20}
     };
 
-    int kingEndGame[] = {
-            -50,-40,-30,-20,-20,-30,-40,-50,
-            -30,-20,-10,  0,  0,-10,-20,-30,
-            -30,-10, 20, 30, 30, 20,-10,-30,
-            -30,-10, 30, 40, 40, 30,-10,-30,
-            -30,-10, 30, 40, 40, 30,-10,-30,
-            -30,-10, 20, 30, 30, 20,-10,-30,
-            -30,-30,  0,  0,  0,  0,-30,-30,
-            -50,-30,-30,-30,-30,-30,-30,-50
+    private static final int kingEndGame[][] = {
+            {-50,-40,-30,-20,-20,-30,-40,-50},
+            {-30,-20,-10,  0,  0,-10,-20,-30},
+            {-30,-10, 20, 30, 30, 20,-10,-30},
+            {-30,-10, 30, 40, 40, 30,-10,-30},
+            {-30,-10, 30, 40, 40, 30,-10,-30},
+            {-30,-10, 20, 30, 30, 20,-10,-30},
+            {-30,-30,  0,  0,  0,  0,-30,-30},
+            {-50,-30,-30,-30,-30,-30,-30,-50}
     };
 
     public static int getValue(Player currentPlayer, long WP, long WN, long WB, long WR, long WQ, long WK,
@@ -111,19 +111,71 @@ public class Evaluation {
         blackKingUnsafe = BK & MoveGenerator.generateUnsafeSquares(Player.BLACK, WP, WN, WB, WR, WQ, WK, BP, BN, BB, BR, BQ, BK);
 
         if(currentPlayer == Player.WHITE) {
+            totalValue += addPiecesPlacement(WP, WB, WR, WN, WQ, WK);
             if(whiteKingUnsafe != 0) // DANGER
                 totalValue -= 10000000;
             if(blackKingUnsafe != 0) // BIEN
-                totalValue += 5000;
+                totalValue += 3000;
         }
         else {
+            totalValue += addPiecesPlacement(Long.reverse(BP), Long.reverse(BB), Long.reverse(BR), Long.reverse(BN), Long.reverse(BQ), Long.reverse(BK));
             if(blackKingUnsafe != 0) // DANGER
                 totalValue -= 10000000;
             if(whiteKingUnsafe != 0) // BIEN
-                totalValue += 5000;
+                totalValue += 3000;
         }
 
         totalValue += currentPlayer == Player.WHITE ? scoreWhite - scoreBlack : scoreBlack - scoreWhite;
         return totalValue;
+    }
+
+    private static int addPiecesPlacement(long pawns, long bishops, long rooks, long knights, long queens, long king) {
+
+        int placementValue = 0;
+
+        long currentPawn = pawns & -pawns;
+        while(currentPawn != 0) {
+            int pawnLocation = Long.numberOfTrailingZeros(currentPawn);
+            placementValue += pawnScores[pawnLocation / 8][pawnLocation % 8];
+            pawns &= ~currentPawn;
+            currentPawn = pawns & -pawns;
+        }
+
+        long currentBishop = bishops & -bishops;
+        while(currentBishop != 0) {
+            int bishopLocation = Long.numberOfTrailingZeros(currentBishop);
+            placementValue += bishopScores[bishopLocation / 8][bishopLocation % 8];
+            bishops &= ~currentBishop;
+            currentBishop = bishops & -bishops;
+        }
+
+        long currentRook = rooks & -rooks;
+        while(currentRook != 0) {
+            int rookLocation = Long.numberOfTrailingZeros(currentRook);
+            placementValue += rookScores[rookLocation / 8][rookLocation % 8];
+            rooks &= ~currentRook;
+            currentRook = rooks & -rooks;
+        }
+
+        long currentKnight = knights & -knights;
+        while(currentKnight != 0) {
+            int knightLocation = Long.numberOfTrailingZeros(currentKnight);
+            placementValue += knightScores[knightLocation / 8][knightLocation % 8];
+            knights &= ~currentKnight;
+            currentKnight = knights & -knights;
+        }
+
+        long currentQueen = queens & -queens;
+        while(currentQueen != 0) {
+            int queenLocation = Long.numberOfTrailingZeros(currentQueen);
+            placementValue += knightScores[queenLocation / 8][queenLocation % 8];
+            queens &= ~currentQueen;
+            currentQueen = queens & -queens;
+        }
+
+        int kingLocation = Long.numberOfTrailingZeros(king);
+        placementValue += kingMidGame[kingLocation / 8][kingLocation % 8];
+
+        return placementValue;
     }
 }
