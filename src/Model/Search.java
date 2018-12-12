@@ -5,8 +5,9 @@ public class Search {
     public Player maximizePlayer = Player.BLACK;
     public int globalDepth;
     public String bestMoveFound;
-    public Search() {
-
+    private Opening opening = new Opening();
+    public Search(String[] moves) {
+        opening.moves=moves;
     }
 
     public int alphaBeta(int alpha, int beta, long WP, long WN, long WB, long WR, long WQ, long WK,
@@ -279,17 +280,29 @@ public class Search {
         SEARCH_TIME = searchTime;
         timeOut = false;
         start = System.currentTimeMillis();
-        for(int d = 0;; d++) {
-            if(d > 0) {
-                globalBestMove = bestMove;
-                System.out.println("Search depth " + currentDepth + " OK. Best move = " + globalBestMove);
+        String move=null;
+
+        if(opening.begining) {
+            move = opening.isRevelant();
+        }
+        if (opening.begining && move != null) {
+            System.out.println("Opening");
+            return move;
+        }
+        else {
+            opening.begining=false;
+            for (int d = 0; ; d++) {
+                if (d > 0) {
+                    globalBestMove = bestMove;
+                    System.out.println("Search depth " + currentDepth + " OK. Best move = " + globalBestMove);
+                }
+
+                currentDepth = INITIAL_DEPTH + d;
+                alphaBetaMAX(currentDepth, Integer.MIN_VALUE, Integer.MAX_VALUE, WP, WN, WB, WR, WQ, WK, BP, BN, BB, BR, BQ, BK, enPassant, castlingRights, currentPlayer);
+
+                if (timeOut)
+                    return globalBestMove;
             }
-
-            currentDepth = INITIAL_DEPTH + d;
-            alphaBetaMAX(currentDepth, Integer.MIN_VALUE, Integer.MAX_VALUE, WP, WN, WB, WR, WQ, WK, BP, BN, BB, BR, BQ, BK, enPassant, castlingRights, currentPlayer);
-
-            if(timeOut)
-                return globalBestMove;
         }
     }
 

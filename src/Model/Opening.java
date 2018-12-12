@@ -7,14 +7,21 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class Opening {
-    ArrayList chaine = new ArrayList();
+    ArrayList<String> chaine = new ArrayList<>();
+    String[] moves;
     String fichier="Ressource/opening.txt";
+    boolean begining;
+
+    public Opening() {
+        this.chaine = openFile(this.chaine);
+        this.begining=true;
+    }
 
     public ArrayList openFile(ArrayList chaine) {
         {
             //lecture du fichier texte
             try {
-                InputStream ips = new FileInputStream(fichier);
+                InputStream ips = new FileInputStream(this.fichier);
                 InputStreamReader ipsr = new InputStreamReader(ips);
                 BufferedReader br = new BufferedReader(ipsr);
                 String ligne;
@@ -27,5 +34,23 @@ public class Opening {
             }
         }
         return chaine;
+    }
+
+    public String isRevelant() {
+        for(int ligne=0; ligne<chaine.size(); ligne++){
+            String[] output = chaine.get(ligne).split(" ");
+            boolean identical=true;
+            int move=0;
+            while (identical || move<output.length){
+                if(!output[move].equals(moves[move+3])){
+                    identical=false;
+                }
+                move++;
+            }
+            if (identical && output.length<moves.length){
+                return moves[move+4];
+            }
+        }
+        return null;
     }
 }
