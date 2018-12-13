@@ -37,22 +37,28 @@ public class Opening {
     }
 
     public String isRevelant() {
+        ArrayList<String> res = new ArrayList<>();
         for(int ligne=0; ligne<chaine.size(); ligne++){
             String[] output = chaine.get(ligne).split(" ");
             boolean identical=true;
             int move=0;
-            if (output.length > moves.length) {
-                while (identical && move+3 < moves.length) {
+            if (output.length+3 > moves.length) {
+                while (move+3 < moves.length) {
                     if (!output[move].equals(moves[move + 3])) {
                         identical = false;
                     }
                     move++;
                 }
                 if (identical) {
-                    return output[move];
+                    res.add(output[move]);
                 }
             }
         }
-        return null;
+        if (!res.isEmpty()) {
+            int rand = (int)(Math.random() * (res.size()));
+            return res.get(rand);
+        }
+        else
+            return null;
     }
 }
