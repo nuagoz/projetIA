@@ -6,6 +6,7 @@ public class UCI {
     private static final String ENGINE_NAME = "StoqueFiche";
     private static final String AUTHORS = "Louison / Zoé / Etienne";
     private Game game;
+    private String[] plateau;
 
     public UCI (Game game) {
         this.game = game;
@@ -80,7 +81,7 @@ public class UCI {
      * @param inputString
      */
     private void newPosition(String inputString) {
-        String[] plateau = inputString.split(" ");
+        plateau = inputString.split(" ");
 
         // Dans le cas ou le plateau de depart est le plateau de base
         if(plateau[1].equals("startpos")) {
@@ -128,9 +129,10 @@ public class UCI {
         if (search.book)
             System.out.println("bestmove " + bestMove);
         else {
-            System.out.println("bestmove " + moveToAlgebra(bestMove));
-            System.out.println("Depth " + (search.currentDepth - 1) + " time : " + (System.currentTimeMillis() - startTime));
             System.out.println("info depth " + (search.currentDepth - 1));
+            System.out.println("bestmove " + moveToAlgebraAdvanced(bestMove));
+            //System.out.println("Depth " + (search.currentDepth - 1) + " time : " + (System.currentTimeMillis() - startTime));
+
         }
         //Search
         //System.out.println("bestmove c7c5");

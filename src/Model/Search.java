@@ -5,263 +5,13 @@ public class Search {
     public Player maximizePlayer = Player.BLACK;
     public int globalDepth;
     public String bestMoveFound;
-    public Search() {
+    public boolean book;
+    private Opening opening = new Opening();
 
-    }
-
-    public int alphaBeta(int alpha, int beta, long WP, long WN, long WB, long WR, long WQ, long WK,
-                                   long BP, long BN, long BB, long BR, long BQ, long BK, long enPassant,
-                                   CastlingRights castlingRights, Player currentPlayer, int depth) {
-
-        if(depth == 0) {
-            System.out.println(currentPlayer);
-            return Evaluation.getValue(currentPlayer, WP, WN, WB, WR, WQ, WK, BP, BN, BB, BR, BQ, BK);
-        }
-
-        int bestScore = -1000;
-
-        String moves = MoveGenerator.generatePossibleMoves(WK, WQ, WR, WB, WN, WP, BK, BQ, BR, BB, BN, BP, enPassant, currentPlayer);
-
-        for (int i = 0; i < moves.length(); i += 4) {
-            String currentMove = moves.substring(i, i+4);
-            long newWP = Move.makeMove(WP, currentMove, 'P');
-            long newWN = Move.makeMove(WN, currentMove, 'N');
-            long newWB = Move.makeMove(WB, currentMove, 'B');
-            long newWR = Move.makeMove(WR, currentMove, 'R');
-            long newWQ = Move.makeMove(WQ, currentMove, 'Q');
-            long newWK = Move.makeMove(WK, currentMove, 'K');
-            long newBP = Move.makeMove(BP, currentMove, 'p');
-            long newBN = Move.makeMove(BN, currentMove, 'n');
-            long newBB = Move.makeMove(BB, currentMove, 'b');
-            long newBR = Move.makeMove(BR, currentMove, 'r');
-            long newBQ = Move.makeMove(BQ, currentMove, 'q');
-            long newBK = Move.makeMove(BK, currentMove, 'k');
-            //long newEnPassant = Move.makeMove(WP|BP, currentMove)
-            newWR = Move.makeCastle(newWR, WK|BK, currentMove);
-            newBR = Move.makeCastle(newBR, WK|BK, currentMove);
-            CastlingRights currentCastlingRights = new CastlingRights(castlingRights);
-            if(Character.isDigit(currentMove.charAt(3))) {
-                int departure = (Character.getNumericValue(currentMove.charAt(0)) * 8) + (Character.getNumericValue(currentMove.charAt(1)));
-                if(((1L << departure) & WK) != 0) {
-                    currentCastlingRights.shortWhiteCastle = false;
-                    currentCastlingRights.longWhiteCastle = false;
-                }
-                else if (((1L << departure) & BK) != 0) {
-                    currentCastlingRights.shortBlackCastle = false;
-                    currentCastlingRights.longBlackCastle = false;
-                }
-                else if(((1L << departure) & WR & (1L << 63)) != 0)
-                    currentCastlingRights.shortWhiteCastle = false;
-                else if(((1L << departure) & WR & (1L << 56)) != 0)
-                    currentCastlingRights.longWhiteCastle = false;
-                else if(((1L << departure) & BR & (1L << 7)) != 0)
-                    currentCastlingRights.shortBlackCastle = false;
-                else if(((1L << departure) & BR & 1L) != 0)
-                    currentCastlingRights.longBlackCastle = false;
-
-            }
-            Player p = currentPlayer == Player.WHITE ? Player.BLACK : Player.WHITE;
-            int moveValue = -alphaBeta(-beta, -alpha, newWP, newWN, newWB, newWR, newWQ, newWK,
-            newBP, newBN, newBB, newBR, newBQ, newBK, enPassant,
-            currentCastlingRights, p, depth-1);
-
-            if(moveValue > bestScore) {
-                bestScore = moveValue;
-                if(depth == 6)
-                    bestMoveFound = currentMove;
-            }
-            alpha = Integer.max(alpha, bestScore);
-
-            if(alpha >= beta)
-                break;
-        }
-        return alpha;
-    }
-
-    public String alphaBeta2(int alpha, int beta, long WP, long WN, long WB, long WR, long WQ, long WK,
-                          long BP, long BN, long BB, long BR, long BQ, long BK, long enPassant,
-                          CastlingRights castlingRights, Player currentPlayer, int depth) {
-
-        int bestScore = Integer.MIN_VALUE;
-        String bestMove = "";
-        String moves = MoveGenerator.generatePossibleMoves(WK, WQ, WR, WB, WN, WP, BK, BQ, BR, BB, BN, BP, enPassant, currentPlayer);
-
-        for (int i = 0; i < moves.length(); i += 4) {
-            String currentMove = moves.substring(i, i + 4);
-            long newWP = Move.makeMove(WP, currentMove, 'P');
-            long newWN = Move.makeMove(WN, currentMove, 'N');
-            long newWB = Move.makeMove(WB, currentMove, 'B');
-            long newWR = Move.makeMove(WR, currentMove, 'R');
-            long newWQ = Move.makeMove(WQ, currentMove, 'Q');
-            long newWK = Move.makeMove(WK, currentMove, 'K');
-            long newBP = Move.makeMove(BP, currentMove, 'p');
-            long newBN = Move.makeMove(BN, currentMove, 'n');
-            long newBB = Move.makeMove(BB, currentMove, 'b');
-            long newBR = Move.makeMove(BR, currentMove, 'r');
-            long newBQ = Move.makeMove(BQ, currentMove, 'q');
-            long newBK = Move.makeMove(BK, currentMove, 'k');
-            //long newEnPassant = Move.makeMove(WP|BP, currentMove)
-            newWR = Move.makeCastle(newWR, WK | BK, currentMove);
-            newBR = Move.makeCastle(newBR, WK | BK, currentMove);
-            CastlingRights currentCastlingRights = new CastlingRights(castlingRights);
-            if (Character.isDigit(currentMove.charAt(3))) {
-                int departure = (Character.getNumericValue(currentMove.charAt(0)) * 8) + (Character.getNumericValue(currentMove.charAt(1)));
-                if (((1L << departure) & WK) != 0) {
-                    currentCastlingRights.shortWhiteCastle = false;
-                    currentCastlingRights.longWhiteCastle = false;
-                } else if (((1L << departure) & BK) != 0) {
-                    currentCastlingRights.shortBlackCastle = false;
-                    currentCastlingRights.longBlackCastle = false;
-                } else if (((1L << departure) & WR & (1L << 63)) != 0)
-                    currentCastlingRights.shortWhiteCastle = false;
-                else if (((1L << departure) & WR & (1L << 56)) != 0)
-                    currentCastlingRights.longWhiteCastle = false;
-                else if (((1L << departure) & BR & (1L << 7)) != 0)
-                    currentCastlingRights.shortBlackCastle = false;
-                else if (((1L << departure) & BR & 1L) != 0)
-                    currentCastlingRights.longBlackCastle = false;
-
-            }
-
-            Player p = currentPlayer == Player.WHITE ? Player.BLACK : Player.WHITE;
-
-
-                int moveValue = minAB(alpha, beta, newWP, newWN, newWB, newWR, newWQ, newWK,
-                        newBP, newBN, newBB, newBR, newBQ, newBK, enPassant,
-                        currentCastlingRights, p, depth-1);
-                if(moveValue > bestScore) {
-                    System.out.println(moveValue + " > " + bestScore);
-                    bestScore = moveValue;
-                    bestMove = currentMove;
-                    System.out.println("New bestmove : " + bestMove);
-                }
-
-
-        }
-        return bestMove;
-    }
-
-    private int minAB(int alpha, int beta, long WP, long WN, long WB, long WR, long WQ, long WK,
-                      long BP, long BN, long BB, long BR, long BQ, long BK, long enPassant,
-                      CastlingRights castlingRights, Player currentPlayer, int depth) {
-        Player opponent = currentPlayer == Player.WHITE ? Player.BLACK : Player.WHITE;
-        if(depth == 0) {
-            return Evaluation.getValue(opponent, WP, WN, WB, WR, WQ, WK, BP, BN, BB, BR, BQ, BK);
-        }
-        int bestScore = Integer.MAX_VALUE;
-        String moves = MoveGenerator.generatePossibleMoves(WK, WQ, WR, WB, WN, WP, BK, BQ, BR, BB, BN, BP, enPassant, currentPlayer);
-
-        for (int i = 0; i < moves.length(); i += 4) {
-            String currentMove = moves.substring(i, i + 4);
-            long newWP = Move.makeMove(WP, currentMove, 'P');
-            long newWN = Move.makeMove(WN, currentMove, 'N');
-            long newWB = Move.makeMove(WB, currentMove, 'B');
-            long newWR = Move.makeMove(WR, currentMove, 'R');
-            long newWQ = Move.makeMove(WQ, currentMove, 'Q');
-            long newWK = Move.makeMove(WK, currentMove, 'K');
-            long newBP = Move.makeMove(BP, currentMove, 'p');
-            long newBN = Move.makeMove(BN, currentMove, 'n');
-            long newBB = Move.makeMove(BB, currentMove, 'b');
-            long newBR = Move.makeMove(BR, currentMove, 'r');
-            long newBQ = Move.makeMove(BQ, currentMove, 'q');
-            long newBK = Move.makeMove(BK, currentMove, 'k');
-            //long newEnPassant = Move.makeMove(WP|BP, currentMove)
-            newWR = Move.makeCastle(newWR, WK | BK, currentMove);
-            newBR = Move.makeCastle(newBR, WK | BK, currentMove);
-            CastlingRights currentCastlingRights = new CastlingRights(castlingRights);
-            if (Character.isDigit(currentMove.charAt(3))) {
-                int departure = (Character.getNumericValue(currentMove.charAt(0)) * 8) + (Character.getNumericValue(currentMove.charAt(1)));
-                if (((1L << departure) & WK) != 0) {
-                    currentCastlingRights.shortWhiteCastle = false;
-                    currentCastlingRights.longWhiteCastle = false;
-                } else if (((1L << departure) & BK) != 0) {
-                    currentCastlingRights.shortBlackCastle = false;
-                    currentCastlingRights.longBlackCastle = false;
-                } else if (((1L << departure) & WR & (1L << 63)) != 0)
-                    currentCastlingRights.shortWhiteCastle = false;
-                else if (((1L << departure) & WR & (1L << 56)) != 0)
-                    currentCastlingRights.longWhiteCastle = false;
-                else if (((1L << departure) & BR & (1L << 7)) != 0)
-                    currentCastlingRights.shortBlackCastle = false;
-                else if (((1L << departure) & BR & 1L) != 0)
-                    currentCastlingRights.longBlackCastle = false;
-
-            }
-            if(((newWK & MoveGenerator.generateUnsafeSquares(Player.WHITE, newBP, newBN, newBB, newBR, newBQ, newBK, newWP, newWN, newWB, newWR, newWQ, newWK)) == 0 && currentPlayer == Player.WHITE)
-                    || ((newBK & MoveGenerator.generateUnsafeSquares(Player.BLACK, newWP, newWN, newWB, newWR, newWQ, newWK, newBP, newBN, newBB, newBR, newBQ, newBK)) == 0 && currentPlayer == Player.BLACK)) {
-                bestScore = Integer.min(bestScore, maxAB(alpha, beta, newWP, newWN, newWB, newWR, newWQ, newWK,
-                        newBP, newBN, newBB, newBR, newBQ, newBK, enPassant,
-                        currentCastlingRights, opponent, depth-1));
-            }
-
-            if(bestScore <= alpha)
-                return bestScore;
-
-            beta = Integer.min(beta, bestScore);
-        }
-        return bestScore;
-    }
-
-    private int maxAB(int alpha, int beta, long WP, long WN, long WB, long WR, long WQ, long WK,
-                      long BP, long BN, long BB, long BR, long BQ, long BK, long enPassant,
-                      CastlingRights castlingRights, Player currentPlayer, int depth) {
-
-        Player opponent = currentPlayer == Player.WHITE ? Player.BLACK : Player.WHITE;
-        if(depth == 0) {
-            return Evaluation.getValue(currentPlayer, WP, WN, WB, WR, WQ, WK, BP, BN, BB, BR, BQ, BK);
-        }
-        int bestScore = Integer.MIN_VALUE;
-        String moves = MoveGenerator.generatePossibleMoves(WK, WQ, WR, WB, WN, WP, BK, BQ, BR, BB, BN, BP, enPassant, currentPlayer);
-
-        for (int i = 0; i < moves.length(); i += 4) {
-            String currentMove = moves.substring(i, i + 4);
-            long newWP = Move.makeMove(WP, currentMove, 'P');
-            long newWN = Move.makeMove(WN, currentMove, 'N');
-            long newWB = Move.makeMove(WB, currentMove, 'B');
-            long newWR = Move.makeMove(WR, currentMove, 'R');
-            long newWQ = Move.makeMove(WQ, currentMove, 'Q');
-            long newWK = Move.makeMove(WK, currentMove, 'K');
-            long newBP = Move.makeMove(BP, currentMove, 'p');
-            long newBN = Move.makeMove(BN, currentMove, 'n');
-            long newBB = Move.makeMove(BB, currentMove, 'b');
-            long newBR = Move.makeMove(BR, currentMove, 'r');
-            long newBQ = Move.makeMove(BQ, currentMove, 'q');
-            long newBK = Move.makeMove(BK, currentMove, 'k');
-            //long newEnPassant = Move.makeMove(WP|BP, currentMove)
-            newWR = Move.makeCastle(newWR, WK | BK, currentMove);
-            newBR = Move.makeCastle(newBR, WK | BK, currentMove);
-            CastlingRights currentCastlingRights = new CastlingRights(castlingRights);
-            if (Character.isDigit(currentMove.charAt(3))) {
-                int departure = (Character.getNumericValue(currentMove.charAt(0)) * 8) + (Character.getNumericValue(currentMove.charAt(1)));
-                if (((1L << departure) & WK) != 0) {
-                    currentCastlingRights.shortWhiteCastle = false;
-                    currentCastlingRights.longWhiteCastle = false;
-                } else if (((1L << departure) & BK) != 0) {
-                    currentCastlingRights.shortBlackCastle = false;
-                    currentCastlingRights.longBlackCastle = false;
-                } else if (((1L << departure) & WR & (1L << 63)) != 0)
-                    currentCastlingRights.shortWhiteCastle = false;
-                else if (((1L << departure) & WR & (1L << 56)) != 0)
-                    currentCastlingRights.longWhiteCastle = false;
-                else if (((1L << departure) & BR & (1L << 7)) != 0)
-                    currentCastlingRights.shortBlackCastle = false;
-                else if (((1L << departure) & BR & 1L) != 0)
-                    currentCastlingRights.longBlackCastle = false;
-
-            }
-            if(((newWK & MoveGenerator.generateUnsafeSquares(Player.WHITE, newBP, newBN, newBB, newBR, newBQ, newBK, newWP, newWN, newWB, newWR, newWQ, newWK)) == 0 && currentPlayer == Player.WHITE)
-                    || ((newBK & MoveGenerator.generateUnsafeSquares(Player.BLACK, newWP, newWN, newWB, newWR, newWQ, newWK, newBP, newBN, newBB, newBR, newBQ, newBK)) == 0 && currentPlayer == Player.BLACK)) {
-                bestScore = Integer.max(bestScore, minAB(alpha, beta, newWP, newWN, newWB, newWR, newWQ, newWK,
-                        newBP, newBN, newBB, newBR, newBQ, newBK, enPassant,
-                        currentCastlingRights, opponent, depth-1));
-            }
-
-            if(bestScore >= beta)
-                return bestScore;
-
-            alpha = Integer.max(alpha, bestScore);
-        }
-        return bestScore;
+    public Search(String[] moves) {
+        opening.moves = moves;
+        transpositionTable = new Hashtable();
+        Zobrist.initRandomArray();
     }
 
     public String bestMove;
@@ -273,11 +23,6 @@ public class Search {
     private static int SEARCH_TIME;
     private Hashtable transpositionTable;
     public int boardEvalSkipped;
-
-    public Search() {
-        transpositionTable = new Hashtable();
-        Zobrist.initRandomArray();
-    }
 
     /* ALPHA BETA + ITERATIVE DEEPENING SEARCH */
     public String deepeningSearch(int searchTime, int maxDepth, long WP, long WN, long WB, long WR, long WQ, long WK,
@@ -324,7 +69,7 @@ public class Search {
             return alpha;
         }
         long hash = Zobrist.getHash(WP, WN, WB, WR, WQ, WK, BP, BN, BB, BR, BQ, BK, enPassant, castlingRights, currentPlayer);
-        if(transpositionTable.isExist(hash)) { // position deja calculee, on recupere son resultat
+        /*if(transpositionTable.isExist(hash)) { // position deja calculee, on recupere son resultat
             boardEvalSkipped++;
             TableItem item = transpositionTable.get(hash);
             if(item.depth >= currentDepth) {
@@ -345,7 +90,7 @@ public class Search {
                     return item.value;
                 }
             }
-        }
+        }*/
 
         if(depth == 0)
             return Evaluation.getValue(currentPlayer, WP, WN, WB, WR, WQ, WK, BP, BN, BB, BR, BQ, BK);
@@ -434,7 +179,7 @@ public class Search {
                              CastlingRights castlingRights, Player currentPlayer) {
 
         long hash = Zobrist.getHash(WP, WN, WB, WR, WQ, WK, BP, BN, BB, BR, BQ, BK, enPassant, castlingRights, currentPlayer);
-        if(transpositionTable.isExist(hash)) { // position deja calculee, on recupere son resultat
+        /*if(transpositionTable.isExist(hash)) { // position deja calculee, on recupere son resultat
             boardEvalSkipped++;
             TableItem item = transpositionTable.get(hash);
             if(item.depth >= currentDepth) {
@@ -455,7 +200,7 @@ public class Search {
                     return item.value;
                 }
             }
-        }
+        }*/
 
         Player opponent = currentPlayer == Player.WHITE ? Player.BLACK : Player.WHITE;
         if(depth == 0)
