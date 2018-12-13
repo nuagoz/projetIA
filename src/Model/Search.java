@@ -5,6 +5,7 @@ public class Search {
     public Player maximizePlayer = Player.BLACK;
     public int globalDepth;
     public String bestMoveFound;
+    public boolean book;
     private Opening opening = new Opening();
     public Search(String[] moves) {
         opening.moves=moves;
@@ -287,11 +288,13 @@ public class Search {
         }
         if (opening.begining && move != null) {
             System.out.println("Opening");
+            book=true;
             return move;
         }
         else {
             opening.begining=false;
             for (int d = 0; ; d++) {
+                book=false;
                 if (d > 0) {
                     globalBestMove = bestMove;
                     System.out.println("Search depth " + currentDepth + " OK. Best move = " + globalBestMove);
@@ -305,6 +308,23 @@ public class Search {
             }
         }
     }
+
+    /*public String deepeningSearchtest() {
+        String move=null;
+
+        if(opening.begining) {
+            move = opening.isRevelant();
+        }
+        if (opening.begining && move != null) {
+            System.out.println("Opening");
+            return move;
+        }
+        else {
+            opening.begining=false;
+            System.out.println("Here I am");
+            return null;
+        }
+    }*/
 
     private int alphaBetaMAX(int depth, int alpha, int beta, long WP, long WN, long WB, long WR, long WQ, long WK,
                             long BP, long BN, long BB, long BR, long BQ, long BK, long enPassant,

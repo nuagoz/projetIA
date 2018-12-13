@@ -104,10 +104,14 @@ public class UCI {
 
         //String bestMove = search.alphaBeta2(Integer.MIN_VALUE, Integer.MAX_VALUE, node.WP, node.WN, node.WB, node.WR, node.WQ, node.WK, node.BP, node.BN, node.BB, node.BR, node.BQ, node.BK, node.enPassant, game.castlingRights, game.enginePlayer, depth);
         //int bestmoveIndex = search.alphaBeta(Integer.MIN_VALUE, Integer.MAX_VALUE, node.WP, node.WN, node.WB, node.WR, node.WQ, node.WK, node.BP, node.BN, node.BB, node.BR, node.BQ, node.BK, node.enPassant, game.castlingRights, game.enginePlayer, depth);
-        System.out.println("Depth " + (search.currentDepth - 1) + " time : " + (System.currentTimeMillis() - startTime));
-        //System.out.println("bestmove " + moveToAlgebra(bestMove));
-        System.out.println("info depth " + (search.currentDepth - 1));
-        System.out.println("bestmove " + moveToAlgebra(bestMove));
+
+        if (search.book)
+            System.out.println("bestmove " + bestMove);
+        else {
+            System.out.println("bestmove " + moveToAlgebra(bestMove));
+            System.out.println("Depth " + (search.currentDepth - 1) + " time : " + (System.currentTimeMillis() - startTime));
+            System.out.println("info depth " + (search.currentDepth - 1));
+        }
         //Search
         //System.out.println("bestmove c7c5");
 

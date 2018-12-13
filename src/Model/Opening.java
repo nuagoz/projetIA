@@ -41,14 +41,16 @@ public class Opening {
             String[] output = chaine.get(ligne).split(" ");
             boolean identical=true;
             int move=0;
-            while (identical || move<output.length){
-                if(!output[move].equals(moves[move+3])){
-                    identical=false;
+            if (output.length > moves.length) {
+                while (identical && move+3 < moves.length) {
+                    if (!output[move].equals(moves[move + 3])) {
+                        identical = false;
+                    }
+                    move++;
                 }
-                move++;
-            }
-            if (identical && output.length<moves.length){
-                return moves[move+4];
+                if (identical) {
+                    return output[move];
+                }
             }
         }
         return null;
