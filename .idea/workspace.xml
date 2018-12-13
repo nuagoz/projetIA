@@ -11,6 +11,7 @@
       <change afterPath="$PROJECT_DIR$/src/Model/TableItem.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/Model/ValueType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/out/artifacts/projetIA_jar/Logfile001.log" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/projetIA_jar/Logfile001.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/projetIA_jar/projetIA.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/projetIA_jar/projetIA.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/projetIA/Model/Evaluation.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projetIA/Model/Evaluation.class" afterDir="false" />
@@ -24,6 +25,9 @@
       <change beforePath="$PROJECT_DIR$/src/Model/Search.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Search.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/UCI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/UCI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Utils.java" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/src/Model/Opening.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Opening.java" afterDir="false" />
+>>>>>>> master
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -77,12 +81,47 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="1126857829">
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="java" value="1396" />
+          <entry key="txt" value="244" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JAVA" value="1396" />
+          <entry key="PLAIN_TEXT" value="244" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="2" />
+          <entry key="project.open.time.24" value="1" />
+          <entry key="project.open.time.25" value="1" />
+          <entry key="project.opened" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="java" value="2" />
+          <entry key="txt" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="JAVA" value="2" />
+          <entry key="PLAIN_TEXT" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Model/UCI.java">
+        <entry file="file://$PROJECT_DIR$/src/Controller/Main.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="108">
               <caret line="241" column="34" selection-start-line="241" selection-start-column="34" selection-end-line="241" selection-end-column="34" />
               <folding>
@@ -93,15 +132,35 @@
                 <element signature="e#5775#5776#0" expanded="true" />
                 <element signature="e#5822#5823#0" expanded="true" />
               </folding>
+=======
+            <state relative-caret-position="306">
+              <caret line="21" selection-start-line="21" selection-end-line="21" />
+>>>>>>> master
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="234">
               <caret line="11" selection-start-line="11" selection-end-line="11" />
+=======
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Model/UCI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="714">
+              <caret line="112" selection-start-line="112" selection-end-line="112" />
+              <folding>
+                <element signature="e#6313#6314#0" expanded="true" />
+                <element signature="e#6364#6365#0" expanded="true" />
+                <element signature="e#6392#6393#0" expanded="true" />
+                <element signature="e#6446#6447#0" expanded="true" />
+                <element signature="e#6473#6474#0" expanded="true" />
+                <element signature="e#6520#6521#0" expanded="true" />
+              </folding>
+>>>>>>> master
             </state>
           </provider>
         </entry>
@@ -109,12 +168,18 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Model/Search.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="341">
               <caret line="131" column="36" selection-start-line="131" selection-start-column="36" selection-end-line="131" selection-end-column="36" />
+=======
+            <state relative-caret-position="442">
+              <caret line="296" column="27" lean-forward="true" selection-start-line="296" selection-start-column="27" selection-end-line="296" selection-end-column="27" />
+>>>>>>> master
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Model/Game.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -125,16 +190,32 @@
                 <element signature="e#1166#1167#0" expanded="true" />
                 <element signature="e#1220#1221#0" expanded="true" />
                 <element signature="e#1268#1269#0" expanded="true" />
+=======
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Model/Opening.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="504">
+              <caret line="61" column="24" lean-forward="true" selection-start-line="61" selection-start-column="24" selection-end-line="61" selection-end-column="24" />
+              <folding>
+                <element signature="imports" expanded="true" />
+>>>>>>> master
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/src/Model/Move.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-261">
               <caret line="15" column="53" selection-start-line="15" selection-start-column="53" selection-end-line="15" selection-end-column="53" />
+=======
+        <entry file="file://$PROJECT_DIR$/Ressource/opening.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="3" column="14" selection-end-line="1447" selection-end-column="14" />
+>>>>>>> master
             </state>
           </provider>
         </entry>
@@ -142,16 +223,22 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Model/MoveGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="-2598">
               <caret line="277" column="45" lean-forward="true" selection-start-line="277" selection-start-column="45" selection-end-line="277" selection-end-column="45" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+=======
+            <state relative-caret-position="306">
+              <caret line="19" column="30" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
+>>>>>>> master
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/src/Model/Node.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="416">
@@ -174,15 +261,26 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="52">
               <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+=======
+        <entry file="file://$PROJECT_DIR$/src/Model/Game.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="11" column="51" selection-start-line="11" selection-start-column="51" selection-end-line="11" selection-end-column="51" />
+>>>>>>> master
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Model/Utils.java">
+        <entry file="file://$PROJECT_DIR$/src/Model/CastlingRights.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="278">
               <caret line="54" column="63" selection-start-line="54" selection-start-column="63" selection-end-line="54" selection-end-column="63" />
+=======
+            <state relative-caret-position="357">
+              <caret line="21" selection-start-line="21" selection-end-line="21" />
+>>>>>>> master
             </state>
           </provider>
         </entry>
@@ -198,6 +296,17 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
+<<<<<<< HEAD
+=======
+      <find>generateBlackPossibleMoves</find>
+      <find>generateKing</find>
+      <find>unsafeSquares(</find>
+      <find>generateBlackCastleMoves</find>
+      <find>Game</find>
+      <find>game</find>
+      <find>bitboard</find>
+      <find>currentP</find>
+>>>>>>> master
       <find>currentPla</find>
       <find>currentPlay</find>
       <find>currentPlayer</find>
@@ -217,6 +326,7 @@
       <find>System.out.pr</find>
       <find>globalBest</find>
       <find>draw</find>
+<<<<<<< HEAD
       <find>makeMove</find>
       <find>isWhiteMoving</find>
       <find>skip</find>
@@ -228,6 +338,10 @@
       <find>getOneLegalMove</find>
       <find>System.</find>
       <find>moveToAl</find>
+=======
+      <find>e2e3</find>
+      <find>Depth</find>
+>>>>>>> master
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -237,7 +351,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/Model/Bitboard.java" />
-        <option value="$PROJECT_DIR$/src/Controller/Main.java" />
         <option value="$PROJECT_DIR$/src/Model/Node.java" />
         <option value="$PROJECT_DIR$/src/Model/CastlingRights.java" />
         <option value="$PROJECT_DIR$/src/Model/TableItem.java" />
@@ -245,12 +358,22 @@
         <option value="$PROJECT_DIR$/src/Model/Hashtable.java" />
         <option value="$PROJECT_DIR$/src/Model/Zobrist.java" />
         <option value="$PROJECT_DIR$/src/Model/Move.java" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/src/Model/Utils.java" />
         <option value="$PROJECT_DIR$/src/Model/Evaluation.java" />
         <option value="$PROJECT_DIR$/src/Model/Search.java" />
         <option value="$PROJECT_DIR$/src/Model/MoveGenerator.java" />
         <option value="$PROJECT_DIR$/src/Model/UCI.java" />
+=======
+        <option value="$PROJECT_DIR$/src/Model/MoveGenerator.java" />
+        <option value="$PROJECT_DIR$/src/Model/Evaluation.java" />
+>>>>>>> master
         <option value="$PROJECT_DIR$/src/Model/Game.java" />
+        <option value="$PROJECT_DIR$/src/Controller/Main.java" />
+        <option value="$PROJECT_DIR$/src/Model/DataBase.java" />
+        <option value="$PROJECT_DIR$/src/Model/Search.java" />
+        <option value="$PROJECT_DIR$/src/Model/UCI.java" />
+        <option value="$PROJECT_DIR$/src/Model/Opening.java" />
       </list>
     </option>
   </component>
@@ -261,22 +384,42 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="680" />
-    <option name="y" value="15" />
-    <option name="width" value="1750" />
-    <option name="height" value="970" />
+    <option name="x" value="-9" />
+    <option name="width" value="1044" />
+    <option name="height" value="1039" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+<<<<<<< HEAD
+=======
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+>>>>>>> master
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="projetIA" type="b2602c69:ProjectViewProjectNode" />
               <item name="projetIA" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="projetIA" type="b2602c69:ProjectViewProjectNode" />
+              <item name="projetIA" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="projetIA" type="b2602c69:ProjectViewProjectNode" />
+              <item name="projetIA" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="artifacts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="projetIA" type="b2602c69:ProjectViewProjectNode" />
+              <item name="projetIA" type="462c0819:PsiDirectoryNode" />
+              <item name="Ressource" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="projetIA" type="b2602c69:ProjectViewProjectNode" />
@@ -308,11 +451,20 @@
     <property name="GenerateAntBuildDialog.enableUiFormCompile" value="true" />
     <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
     <property name="GenerateAntBuildDialog.outputFileNameProperty" value="projetia" />
+<<<<<<< HEAD
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544716374769" />
+=======
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544673584375" />
+>>>>>>> master
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\louis\OneDrive\Documents\IATIC5\Trimestre1\IA\Sudoku\projetIA\Ressource" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -346,6 +498,28 @@
       <option name="presentableId" value="Default" />
       <updated>1543590219011</updated>
     </task>
+    <task id="LOCAL-00001" summary="Ajout de la BD d'ouverture dans le dossier Ressource et ajout de la classe opening qui ouvre la BD">
+      <created>1544648917508</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1544648917508</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Ajout de l'exploitation de la BD dans Search">
+      <created>1544657033879</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1544657033879</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Solution BD first-in first-out">
+      <created>1544711705802</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1544711705802</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TodoView">
@@ -361,7 +535,11 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
+<<<<<<< HEAD
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27785236" />
+=======
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.10872483" />
+>>>>>>> master
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -369,16 +547,22 @@
       <window_info id="Capture Tool" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
+<<<<<<< HEAD
       <window_info anchor="bottom" id="Find" order="1" weight="0.3299566" />
       <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.4544139" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39942113" />
+=======
+      <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.3248227" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4986577" weight="0.40028694" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39432624" />
+>>>>>>> master
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3299566" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5013423" side_tool="true" weight="0.39716312" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.3299566" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.32765958" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.24966443" />
@@ -393,10 +577,17 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Ajout de la BD d'ouverture dans le dossier Ressource et ajout de la classe opening qui ouvre la BD" />
+    <MESSAGE value="Ajout de l'exploitation de la BD dans Search" />
+    <MESSAGE value="Solution BD first-in first-out" />
+    <option name="LAST_COMMIT_MESSAGE" value="Solution BD first-in first-out" />
+  </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/projetIA.iml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/Model/CastlingRights.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="290">
@@ -412,6 +603,16 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/Hash.java" />
+=======
+    <entry file="file://$PROJECT_DIR$/src/Model/Node.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="16" column="7" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/src.zip!/java/lang/String.java" />
+>>>>>>> master
     <entry file="file://$PROJECT_DIR$/src/Model/Player.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="52">
@@ -455,6 +656,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/BoardGeneration.java">
+<<<<<<< HEAD
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2158">
           <caret line="83" column="1" selection-start-line="83" selection-start-column="1" selection-end-line="83" selection-end-column="1" />
@@ -484,16 +686,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="52">
           <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/Main.java">
+=======
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        <state relative-caret-position="494">
+          <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+>>>>>>> master
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Utils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1248">
+          <caret line="48" column="35" selection-start-line="48" selection-start-column="23" selection-end-line="48" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/Model/Utils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="278">
@@ -512,21 +720,49 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="341">
           <caret line="131" column="36" selection-start-line="131" selection-start-column="36" selection-end-line="131" selection-end-column="36" />
+=======
+    <entry file="file://$PROJECT_DIR$/src/Model/Evaluation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2933">
+          <caret line="177" lean-forward="true" selection-start-line="177" selection-end-line="177" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Hash.java" />
+    <entry file="file://$PROJECT_DIR$/src/Model/DataBase.java" />
+    <entry file="file://$PROJECT_DIR$/src/Controller/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="21" selection-start-line="21" selection-end-line="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Ressource/opening.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="14" selection-end-line="1447" selection-end-column="14" />
+>>>>>>> master
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/MoveGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="-2598">
           <caret line="277" column="45" lean-forward="true" selection-start-line="277" selection-start-column="45" selection-end-line="277" selection-end-column="45" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+=======
+        <state relative-caret-position="306">
+          <caret line="19" column="30" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
+>>>>>>> master
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/UCI.java">
+    <entry file="file://$PROJECT_DIR$/src/Model/Game.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="108">
           <caret line="241" column="34" selection-start-line="241" selection-start-column="34" selection-end-line="241" selection-end-column="34" />
           <folding>
@@ -544,11 +780,30 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-261">
           <caret line="15" column="53" selection-start-line="15" selection-start-column="53" selection-end-line="15" selection-end-column="53" />
+=======
+        <state relative-caret-position="187">
+          <caret line="11" column="51" selection-start-line="11" selection-start-column="51" selection-end-line="11" selection-end-column="51" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/Game.java">
+    <entry file="file://$PROJECT_DIR$/src/Model/CastlingRights.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" selection-start-line="21" selection-end-line="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Search.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="296" column="27" lean-forward="true" selection-start-line="296" selection-start-column="27" selection-end-line="296" selection-end-column="27" />
+>>>>>>> master
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Opening.java">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="73">
           <caret line="19" column="17" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
           <folding>
@@ -556,6 +811,27 @@
             <element signature="e#1166#1167#0" expanded="true" />
             <element signature="e#1220#1221#0" expanded="true" />
             <element signature="e#1268#1269#0" expanded="true" />
+=======
+        <state relative-caret-position="504">
+          <caret line="61" column="24" lean-forward="true" selection-start-line="61" selection-start-column="24" selection-end-line="61" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/UCI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="112" selection-start-line="112" selection-end-line="112" />
+          <folding>
+            <element signature="e#6313#6314#0" expanded="true" />
+            <element signature="e#6364#6365#0" expanded="true" />
+            <element signature="e#6392#6393#0" expanded="true" />
+            <element signature="e#6446#6447#0" expanded="true" />
+            <element signature="e#6473#6474#0" expanded="true" />
+            <element signature="e#6520#6521#0" expanded="true" />
+>>>>>>> master
           </folding>
         </state>
       </provider>

@@ -115,10 +115,26 @@ public class UCI {
 
     private void getBestMove() {
         Node node = new Node(game.chessBoard);
-        Search search = new Search();
-        String bestMove = search.deepeningSearch(1000, 6, node.WP, node.WN, node.WB, node.WR, node.WQ, node.WK, node.BP, node.BN, node.BB, node.BR, node.BQ, node.BK, node.enPassant, game.castlingRights, game.enginePlayer);
-        System.out.println("info depth " + (search.currentDepth - 1));
-        System.out.println("bestmove " + moveToAlgebraAdvanced(bestMove));
+        game.displayChessBoard();
+        int depth = 6;
+        long startTime = System.currentTimeMillis();
+        Search search = new Search(plateau);
+        String bestMove = search.deepeningSearch(1000, depth, node.WP, node.WN, node.WB, node.WR, node.WQ, node.WK, node.BP, node.BN, node.BB, node.BR, node.BQ, node.BK, node.enPassant, game.castlingRights, game.enginePlayer);
+        //search.alphaBeta(Integer.MIN_VALUE, Integer.MAX_VALUE, node.WP, node.WN, node.WB, node.WR, node.WQ, node.WK, node.BP, node.BN, node.BB, node.BR, node.BQ, node.BK, node.enPassant, game.castlingRights, game.enginePlayer, depth);
+
+        //String bestMove = search.alphaBeta2(Integer.MIN_VALUE, Integer.MAX_VALUE, node.WP, node.WN, node.WB, node.WR, node.WQ, node.WK, node.BP, node.BN, node.BB, node.BR, node.BQ, node.BK, node.enPassant, game.castlingRights, game.enginePlayer, depth);
+        //int bestmoveIndex = search.alphaBeta(Integer.MIN_VALUE, Integer.MAX_VALUE, node.WP, node.WN, node.WB, node.WR, node.WQ, node.WK, node.BP, node.BN, node.BB, node.BR, node.BQ, node.BK, node.enPassant, game.castlingRights, game.enginePlayer, depth);
+
+        if (search.book)
+            System.out.println("bestmove " + bestMove);
+        else {
+            System.out.println("bestmove " + moveToAlgebra(bestMove));
+            System.out.println("Depth " + (search.currentDepth - 1) + " time : " + (System.currentTimeMillis() - startTime));
+            System.out.println("info depth " + (search.currentDepth - 1));
+        }
+        //Search
+        //System.out.println("bestmove c7c5");
+
     }
 
     private void fenToBoard(String FEN) {
