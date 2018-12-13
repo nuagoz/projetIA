@@ -14,7 +14,6 @@ public class Move {
                 bitboard &= ~(1L << destination); // Update piece
         }
         else if(move.charAt(3) == 'P') { // Promotion
-            System.out.println("PROMOTION ! " + move);
             if(Character.isUpperCase(move.charAt(2))) {
                 departure = Long.numberOfTrailingZeros(Utils.FILES[move.charAt(0)-'0'] & Utils.RANKS[1]);
                 destination = Long.numberOfTrailingZeros(Utils.FILES[move.charAt(1)-'0'] & Utils.RANKS[0]);
@@ -26,8 +25,8 @@ public class Move {
             if(type == move.charAt(2))
                 bitboard |= (1L << destination);
             else {
-                bitboard &= (1L << departure);
                 bitboard &= ~(1L << departure);
+                bitboard &= ~(1L << destination);
             }
         }
 

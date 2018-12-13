@@ -52,7 +52,7 @@ public class Utils {
             chessBoard[i/8][i%8]="";
         }
         for (int i=0;i<64;i++) {
-            if (((bitBoard>>>i)&1)==1) {chessBoard[i/8][i%8]="P";}
+            if (((bitBoard>>>i)&1)==1) {chessBoard[i/8][i%8]="x";}
             if ("".equals(chessBoard[i/8][i%8])) {chessBoard[i/8][i%8]=" ";}
         }
         for (int i=0;i<8;i++) {

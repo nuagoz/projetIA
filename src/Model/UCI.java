@@ -38,8 +38,14 @@ public class UCI {
                 quit();
                 break;
             }
-            else if(inputString.equals("compute"))
-                compute();
+            else if(inputString.startsWith("compute"))
+                compute(inputString.split(" ")[1]);
+            else if(inputString.equals("black")) {
+                game.setPlayer(Player.BLACK);
+            }
+            else if(inputString.equals("white")) {
+                game.setPlayer(Player.WHITE);
+            }
             else {
                 System.out.println("Manual communication");
             }
@@ -85,32 +91,34 @@ public class UCI {
             fenToBoard(plateau[2]);
         }
 
-        if(plateau.length < 3)
+        if(plateau.length < 3) {
+            // L'IA joue les blancs
+            game.setPlayer(Player.WHITE);
+            System.out.println("Engine plays as white");
+            getBestMove();
             return;
+        }
+        if(plateau.length == 4) {
+            System.out.println("----> Player : black");
+            game.setPlayer(Player.BLACK);
+        }
 
         // On applique ensuite la liste des mouvements qui ont ete realises a partir du plateau de depart
         if(plateau[2].equals("moves")) {
             for(int i = 3; i < plateau.length; i++)
                 game.makeMove(plateau[i]);
         }
-        //game.displayChessBoard();
-        Node node = new Node(game.chessBoard);
         game.displayChessBoard();
-        int depth = 6;
-        long startTime = System.currentTimeMillis();
+        getBestMove();
+
+    }
+
+    private void getBestMove() {
+        Node node = new Node(game.chessBoard);
         Search search = new Search();
-        String bestMove = search.deepeningSearch(1000, depth, node.WP, node.WN, node.WB, node.WR, node.WQ, node.WK, node.BP, node.BN, node.BB, node.BR, node.BQ, node.BK, node.enPassant, game.castlingRights, game.enginePlayer);
-        //search.alphaBeta(Integer.MIN_VALUE, Integer.MAX_VALUE, node.WP, node.WN, node.WB, node.WR, node.WQ, node.WK, node.BP, node.BN, node.BB, node.BR, node.BQ, node.BK, node.enPassant, game.castlingRights, game.enginePlayer, depth);
-
-        //String bestMove = search.alphaBeta2(Integer.MIN_VALUE, Integer.MAX_VALUE, node.WP, node.WN, node.WB, node.WR, node.WQ, node.WK, node.BP, node.BN, node.BB, node.BR, node.BQ, node.BK, node.enPassant, game.castlingRights, game.enginePlayer, depth);
-        //int bestmoveIndex = search.alphaBeta(Integer.MIN_VALUE, Integer.MAX_VALUE, node.WP, node.WN, node.WB, node.WR, node.WQ, node.WK, node.BP, node.BN, node.BB, node.BR, node.BQ, node.BK, node.enPassant, game.castlingRights, game.enginePlayer, depth);
-        System.out.println("Depth " + (search.currentDepth - 1) + " time : " + (System.currentTimeMillis() - startTime));
-        //System.out.println("bestmove " + moveToAlgebra(bestMove));
+        String bestMove = search.deepeningSearch(1000, 6, node.WP, node.WN, node.WB, node.WR, node.WQ, node.WK, node.BP, node.BN, node.BB, node.BR, node.BQ, node.BK, node.enPassant, game.castlingRights, game.enginePlayer);
         System.out.println("info depth " + (search.currentDepth - 1));
-        System.out.println("bestmove " + moveToAlgebra(bestMove));
-        //Search
-        //System.out.println("bestmove c7c5");
-
+        System.out.println("bestmove " + moveToAlgebraAdvanced(bestMove));
     }
 
     private void fenToBoard(String FEN) {
@@ -181,13 +189,63 @@ public class UCI {
         return moveString;
     }
 
-    private void compute() {
+    private String moveToAlgebraAdvanced(String move) {
+        String append="";
+        int start=0,end=0;
+        if (Character.isDigit(move.charAt(3))) {//'regular' move
+            start=(Character.getNumericValue(move.charAt(0))*8)+(Character.getNumericValue(move.charAt(1)));
+            end=(Character.getNumericValue(move.charAt(2))*8)+(Character.getNumericValue(move.charAt(3)));
+        } else if (move.charAt(3)=='P') {//pawn promotion
+            if (Character.isUpperCase(move.charAt(2))) {
+                start=Long.numberOfTrailingZeros(Utils.FILES[move.charAt(0)-'0']&Utils.RANKS[1]);
+                end=Long.numberOfTrailingZeros(Utils.FILES[move.charAt(1)-'0']&Utils.RANKS[0]);
+            } else {
+                start=Long.numberOfTrailingZeros(Utils.FILES[move.charAt(0)-'0']&Utils.RANKS[6]);
+                end=Long.numberOfTrailingZeros(Utils.FILES[move.charAt(1)-'0']&Utils.RANKS[7]);
+            }
+            append=""+Character.toLowerCase(move.charAt(2));
+        } else if (move.charAt(3)=='E') {//en passant
+            if (move.charAt(2)=='W') {
+                start=Long.numberOfTrailingZeros(Utils.FILES[move.charAt(0)-'0']&Utils.RANKS[3]);
+                end=Long.numberOfTrailingZeros(Utils.FILES[move.charAt(1)-'0']&Utils.RANKS[2]);
+            } else {
+                start=Long.numberOfTrailingZeros(Utils.FILES[move.charAt(0)-'0']&Utils.RANKS[4]);
+                end=Long.numberOfTrailingZeros(Utils.FILES[move.charAt(1)-'0']&Utils.RANKS[5]);
+            }
+        }
+        String returnMove="";
+        returnMove+=(char)('a'+(start%8));
+        returnMove+=(char)('8'-(start/8));
+        returnMove+=(char)('a'+(end%8));
+        returnMove+=(char)('8'-(end/8));
+        returnMove+=append;
+        return returnMove;
+    }
+
+    private void compute(String player) {
         Node node = new Node(game.chessBoard);
+        Player playerToEval = null;
         long startTime = System.currentTimeMillis();
+        if(player.equals("white"))
+            playerToEval = Player.WHITE;
+        else if(player.equals("black"))
+            playerToEval = Player.BLACK;
         //String moves = MoveGenerator.generatePossibleMoves(node.WK,node.BQ,node.WR,node.WB,node.WN,node.WP,node.BK,
                 //node.BQ,node.BR,node.BB,node.BN,node.BP,node.enPassant,Player.BLACK);
-        System.out.println("Evaluation = " + Evaluation.getValue(Player.BLACK, node.WP, node.WN, node.WB, node.WR, node.WQ,
+        System.out.println("Evaluation = " + Evaluation.getValue(playerToEval, node.WP, node.WN, node.WB, node.WR, node.WQ,
                 node.WK, node.BP, node.BN, node.BB, node.BR, node.BQ, node.BK));
+
+        int depth = 6;
+
+        String moves = MoveGenerator.generatePossibleMoves(node.WK, node.WQ, node.WR, node.WB, node.WN, node.WP, node.BK, node.BQ, node.BR, node.BB, node.BN, node.BP, node.enPassant, Player.WHITE);
+
+        System.out.println(moves);
+
+        /*Search search = new Search();
+        String bestMove = search.deepeningSearch(1000, 6, node.WP, node.WN, node.WB, node.WR, node.WQ, node.WK, node.BP, node.BN, node.BB, node.BR, node.BQ, node.BK, node.enPassant, game.castlingRights, playerToEval);
+        System.out.println("Bestmove for " + playerToEval + ": " + search.bestMove);*/
+        //s.alphaBetaMAX(5, -100000,100000,node.WP, node.WN, node.WB, node.WR, node.WQ, node.WK, node.BP, node.BN, node.BB, node.BR, node.BQ, node.BK, node.enPassant, game.castlingRights, Player.BLACK);
+        //System.out.println("best move = " + s.bestMove);
         /*String moves = node.getPossiblesMoves(Player.WHITE);
         System.out.println("GENERATE MOVES TIME :" + (System.currentTimeMillis() - startTime));
         System.out.println("Moves : (" + (moves.length()/4) + ") " + moves);

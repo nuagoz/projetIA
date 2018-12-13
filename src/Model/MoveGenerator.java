@@ -269,7 +269,7 @@ public class MoveGenerator {
                     + (index % 8) + (index % 8) + "RP"
                     + (index % 8) + (index % 8) + "BP"
                     + (index % 8) + (index % 8) + "NP";
-            //whitePawnMoveList.append(moveCoords);
+            whitePawnMoveList.append(moveCoords);
             pawnMoves &= ~currentMove;
             currentMove = pawnMoves & -pawnMoves;
         }
@@ -282,7 +282,7 @@ public class MoveGenerator {
                     + (index % 8+1) + (index % 8) + "RP"
                     + (index % 8+1) + (index % 8) + "BP"
                     + (index % 8+1) + (index % 8) + "NP";
-            // whitePawnMoveList.append(moveCoords);
+            whitePawnMoveList.append(moveCoords);
             pawnMoves &= ~currentMove;
             currentMove = pawnMoves & -pawnMoves;
         }
@@ -296,7 +296,7 @@ public class MoveGenerator {
                     + (index % 8+1) + (index % 8) + "RP"
                     + (index % 8+1) + (index % 8) + "BP"
                     + (index % 8+1) + (index % 8) + "NP";
-            //whitePawnMoveList.append(moveCoords);
+            whitePawnMoveList.append(moveCoords);
             pawnMoves &= ~currentMove;
             currentMove = pawnMoves & -pawnMoves;
         }
@@ -384,7 +384,7 @@ public class MoveGenerator {
                     + (index % 8) + (index % 8) + "rP"
                     + (index % 8) + (index % 8) + "bP"
                     + (index % 8) + (index % 8) + "nP";
-            //blackPawnMoveList.append(moveCoords);
+            blackPawnMoveList.append(moveCoords);
             pawnMoves &= ~currentMove;
             currentMove = pawnMoves & -pawnMoves;
         }
@@ -398,7 +398,7 @@ public class MoveGenerator {
                     + (index % 8-1) + (index % 8) + "rP"
                     + (index % 8-1) + (index % 8) + "bP"
                     + (index % 8-1) + (index % 8) + "nP";
-            //blackPawnMoveList.append(moveCoords);
+            blackPawnMoveList.append(moveCoords);
             pawnMoves &= ~currentMove;
             currentMove = pawnMoves & -pawnMoves;
         }
@@ -412,7 +412,7 @@ public class MoveGenerator {
                     + (index % 8-1) + (index % 8) + "rP"
                     + (index % 8-1) + (index % 8) + "bP"
                     + (index % 8-1) + (index % 8) + "nP";
-            //blackPawnMoveList.append(moveCoords);
+            blackPawnMoveList.append(moveCoords);
             pawnMoves &= ~currentMove;
             currentMove = pawnMoves & -pawnMoves;
         }

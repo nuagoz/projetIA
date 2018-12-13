@@ -2,7 +2,7 @@ package Model;
 
 public class Game {
 
-    public String chessBoard1[][] = {
+    /*public String chessBoard1[][] = {
         { "r", " ", "b", " ", "k", " ", "n", "r" },
         { "p", "p", "p", "p", " ", "p", "p", "p" },
         { "n", " ", " ", " ", "p", "q", " ", " " },
@@ -11,17 +11,19 @@ public class Game {
         { " ", " ", "N", " ", " ", " ", " ", " " },
         { "P", "B", "P", " ", " ", "P", "P", "P" },
         { "R", " ", " ", "Q", "K", "B", "N", "R" }
-    };
+    };*/
 
+
+    
     public String chessBoard[][] = {
-            { " ", " ", " ", "k", " ", " ", " ", " " },
-            { " ", " ", " ", " ", " ", " ", " ", " " },
-            { " ", " ", " ", " ", " ", " ", " ", " " },
-            { " ", "q", " ", " ", " ", " ", " ", " " },
-            { " ", " ", " ", " ", " ", " ", " ", " " },
-            { " ", " ", " ", " ", " ", " ", " ", " " },
-            { " ", " ", " ", " ", " ", " ", " ", " " },
-            { " ", " ", " ", " ", "K", " ", " ", " " }
+        { " ", " ", " ", " ", " ", " ", " ", " " },
+        { " ", " ", " ", " ", " ", "K", " ", " " },
+        { " ", " ", " ", " ", " ", " ", " ", " " },
+        { " ", " ", " ", " ", " ", " ", " ", " " },
+        { " ", "R", " ", " ", " ", " ", " ", " " },
+        { " ", " ", " ", " ", " ", " ", " ", " " },
+        { "p", " ", " ", " ", " ", " ", " ", " " },
+        { " ", " ", " ", " ", " ", " ", "k", " " }
     };
 
     CastlingRights castlingRights = new CastlingRights(true, true, true, true);
@@ -29,7 +31,10 @@ public class Game {
 
     public Game(Player enginePlayer) {
         this.enginePlayer = enginePlayer;
-        System.out.println("Game created");
+    }
+
+    public void setPlayer(Player enginePlayer) {
+        this.enginePlayer = enginePlayer;
     }
 
     public void displayChessBoard() {
@@ -83,7 +88,7 @@ public class Game {
         String pieceMoved = chessBoard[departure.rank][departure.file];
 
         // Etape 3 : Detecter si c'est les blancs ou les noirs qui jouent
-        isWhiteMoving = pieceMoved.equals(pieceMoved.toLowerCase());
+        isWhiteMoving = pieceMoved.equals(pieceMoved.toUpperCase());
 
         // Etape 4 : Mise a jour du plateau
         chessBoard[departure.rank][departure.file] = Piece.empty;
@@ -97,7 +102,7 @@ public class Game {
 
     private void pawnPromotion(Square destination, String promotedTo, boolean isWhiteMoving) {
         if(isWhiteMoving) {
-            chessBoard[destination.rank][destination.file] = promotedTo.toLowerCase();
+            chessBoard[destination.rank][destination.file] = promotedTo.toUpperCase();
         }
         else {
             chessBoard[destination.rank][destination.file] = promotedTo;

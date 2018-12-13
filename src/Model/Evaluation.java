@@ -2,12 +2,33 @@ package Model;
 
 public class Evaluation {
 
+    public static final int MATE_VALUE = 300000;
+
+    /* Valeurs des pieces */
     private static final int pawnValue = 100;
-    private static final int bishopValue = 300;
-    private static final int knightValue = 300;
+    private static final int bishopValue = 330;
+    private static final int knightValue = 330;
     private static final int rookValue = 500;
     private static final int queenValue = 900;
-    private static final int kingValue = 10000000;
+    private static final int kingValue = MATE_VALUE;
+
+    /* Malus pour les cavaliers, tours et pions */
+    private static final int knightPenalty = -10;
+    private static final int rookPenalty = -20;
+    private static final int noPawnsPenalty = -20;
+
+    // Bonus en fonction du nombre de pions restants
+    private static final int[] knightPawnAdjustment =
+            {-30, -20, -15, -10, -5, 0, 5, 10, 15};
+
+    private static final int[] rookPawnAdjustment =
+            {25, 20, 15, 10, 5, 0, -5, -10, -15};
+
+    private static final int[] dualBishopPawnAdjustment =
+            {40, 40, 35, 30, 25, 20, 20, 15, 15};
+
+    private static final int tempoBonus = 10;
+
 
     private static final int pawnScores[][] = {
             {0,  0,  0,  0,  0,  0,  0,  0},
@@ -107,22 +128,28 @@ public class Evaluation {
         scoreBlack += Long.bitCount(BQ) * queenValue;
         scoreBlack += Long.bitCount(BK) * kingValue;
 
-        whiteKingUnsafe = WK & MoveGenerator.generateUnsafeSquares(Player.WHITE, BP, BN, BB, BR, BQ, BK, WP, WN, WB, WR, WQ, WK);
-        blackKingUnsafe = BK & MoveGenerator.generateUnsafeSquares(Player.BLACK, WP, WN, WB, WR, WQ, WK, BP, BN, BB, BR, BQ, BK);
+        long squaresAttackedByBlack = MoveGenerator.generateUnsafeSquares(Player.WHITE, BP, BN, BB, BR, BQ, BK, WP, WN, WB, WR, WQ, WK);
+        long squaresAttackedByWhite = MoveGenerator.generateUnsafeSquares(Player.BLACK, WP, WN, WB, WR, WQ, WK, BP, BN, BB, BR, BQ, BK);
+        whiteKingUnsafe = WK & squaresAttackedByBlack;
+        blackKingUnsafe = BK & squaresAttackedByWhite;
+
+        //totalValue +=
+
+        //Utils.drawBitboard(MoveGenerator.generateUnsafeSquares(Player.BLACK, WP, WN, WB, WR, WQ, WK, BP, BN, BB, BR, BQ, BK));
 
         if(currentPlayer == Player.WHITE) {
             totalValue += addPiecesPlacement(WP, WB, WR, WN, WQ, WK);
             if(whiteKingUnsafe != 0) // DANGER
                 totalValue -= 10000000;
             if(blackKingUnsafe != 0) // BIEN
-                totalValue += 3000;
+                totalValue += 500;
         }
         else {
             totalValue += addPiecesPlacement(Long.reverse(BP), Long.reverse(BB), Long.reverse(BR), Long.reverse(BN), Long.reverse(BQ), Long.reverse(BK));
             if(blackKingUnsafe != 0) // DANGER
                 totalValue -= 10000000;
             if(whiteKingUnsafe != 0) // BIEN
-                totalValue += 3000;
+                totalValue += 500;
         }
 
         totalValue += currentPlayer == Player.WHITE ? scoreWhite - scoreBlack : scoreBlack - scoreWhite;
